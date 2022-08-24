@@ -1,0 +1,9 @@
+.table-title{
+    background: #3bcd9c;
+    color: #fff;
+    padding: 16px 30px;
+    border-radius: 3px 3px 0 0;
+}
+.table>thead>tr{
+    background-color: lightskyblue;
+}

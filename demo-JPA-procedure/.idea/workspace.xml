@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ff8db87-5d64-4a96-ab4d-6a08f1ac10c3" name="Changes" comment="" />
+    <list default="true" id="3ff8db87-5d64-4a96-ab4d-6a08f1ac10c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Banking1/src/main/java/com.codegym/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Banking1/src/main/java/com.codegym/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Banking1/src/main/java/com.codegym/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../New folder/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../New folder/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +30,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -35,6 +44,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2D7suUhg4yAhgRv5DEKudAHwmiF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,10 +55,24 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/module4/customer-management-jpa"
+    "last_opened_file_path": "D:/module4/customer-management-repository",
+    "spring.configuration.checksum": "0142a5c63ac9d7ae39c7015bc3e09e05"
   }
 }]]></component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="demo-JPA-procedure" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="demo-JPA-procedure" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
       <deployment>
@@ -146,6 +170,7 @@
       <option name="presentableId" value="Default" />
       <updated>1660061684820</updated>
       <workItem from="1660061686154" duration="1886000" />
+      <workItem from="1660189358111" duration="49000" />
     </task>
     <servers />
   </component>
