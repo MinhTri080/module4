@@ -28,7 +28,7 @@ public class Transfer extends BaseEntity {
     @Column(name = "transfer_amount", precision = 12,scale = 0)
     private BigDecimal transferAmount;
 
-    private float fees;
+    private float fees ;
 
 
 

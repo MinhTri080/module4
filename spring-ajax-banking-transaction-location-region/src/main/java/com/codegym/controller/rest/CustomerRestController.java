@@ -1,5 +1,6 @@
 package com.codegym.controller.rest;
 
+import com.codegym.exception.ResourceNotFoundException;
 import com.codegym.model.*;
 import com.codegym.model.dto.*;
 import com.codegym.service.customer.CustomerService;
@@ -100,20 +101,22 @@ public class CustomerRestController {
 //            BigDecimal curentBalanceSender = senderCustomer.getBalance();
 //            BigDecimal curentBalanceRecipdent = recipdentCustomer.getBalance();
             BigDecimal transferAmount = transfer.getTransferAmount();
-            float fees = transferDTO.getFees();
+//            float fees = transferDTO.getFees();
+            float fees = 10;
 
             BigDecimal feesAmount = transferAmount.multiply(new BigDecimal(fees)).divide(new BigDecimal(100L));
             BigDecimal transactionAmount = transferAmount.add(feesAmount);
 
 //            BigDecimal newBalanceSender = curentBalanceSender.subtract(transactionAmount);
 //            BigDecimal newBalanceRecipdent = curentBalanceRecipdent.add(transferAmount);
-
+//            transfer.setFees(10L);
             transfer.setFeesAmount(feesAmount);
             transfer.setTransactionAmount(transactionAmount);
 
             Transfer transfer1 = transferService.save(transfer);
-            customerService.subBalance(senderCustomer.getId(),transactionAmount);
-            customerService.incrementBalance(recipdentCustomer.getId(),transferAmount);
+//            float fees = 10;
+            customerService.subBalance(senderCustomer.getId(), transactionAmount);
+            customerService.incrementBalance(recipdentCustomer.getId(), transferAmount);
 
 
 //            senderCustomer.setBalance(newBalanceSender);
@@ -122,9 +125,18 @@ public class CustomerRestController {
 //            recipdentCustomer.setBalance(newBalanceRecipdent);
 //            customerService.save(recipdentCustomer);
 
-            return new ResponseEntity<>(transfer1.toTransferDTO(),HttpStatus.OK);
+            return new ResponseEntity<>(transfer1.toTransferDTO(), HttpStatus.OK);
 
         }
         return null;
+    }
+
+    @GetMapping("/{customerId}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long customerId) {
+        Optional<Customer> optionalCustomer = customerService.findById(customerId);
+        if (!optionalCustomer.isPresent()) {
+            throw new ResourceNotFoundException("Customer invalid");
+        }
+        return new ResponseEntity<>(optionalCustomer.get().toCustomerDTO(), HttpStatus.OK);
     }
 }

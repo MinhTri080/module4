@@ -34,7 +34,6 @@ public class TransferDTO {
         return new Transfer ()
                 .setId ( id )
                 .setTransferAmount ( transferAmount )
-                .setFees ( fees )
                 .setFeesAmount ( feesAmount )
                 .setTransactionAmount ( transactionAmount )
                 .setSender ( sender )

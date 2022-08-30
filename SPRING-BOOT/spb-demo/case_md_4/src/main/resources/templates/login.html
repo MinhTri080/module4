@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert2.min.css">
+    <!-- <link rel="shortcut icon" href="image/AM.png" type="image/x-icon"> -->
+</head>
+<body>
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="register">
+        <form form id="frmRegister" class="input-group">
+            <label for="chk" aria-hidden="true">Register</label>
+            <input type="text" id="usnReg" placeholder="User name" required="">
+            <input type="password"  id="pwdReg" placeholder="Password" required="">
+            <select  class="user-option">
+                <option selected value="1" class="selected">ADMIN</option>
+                <option value="2" class="selected">USER</option>
+            </select>
+            <button id="register">Register</button>
+        </form>
+    </div>
+
+
+        <div class="login">
+    <form form id="frmLogin" class="input-group">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" id="usnLogin" class="input-field" placeholder="Email" required="">
+        <input type="password" name="pwdLogin" class="input-field" placeholder="Password" required="">
+        <label>
+        </label>
+        <button type="button" id="btnLogin" class="btn submit-btn">Login</button>
+<!--        <input type="checkbox" class="" value="remember"><span> Remember login</span>-->
+    </form>
+        </div>
+</div>
+
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/sweetalert2.min.js"></script>
+<script>
+    // let page = {
+    //     urls: {
+    //         register: App.BASE_URL_AUTH + "/register",
+    //         login: App.BASE_URL_AUTH + "/login",
+    //     },
+    //     elements: {},
+    //     commands: {}
+    // }
+    // page.elements.frmLogin = $("#frmLogin");
+    // page.elements.usnLogin = $("#usnLogin");
+    // page.elements.pwdLogin = $("#pwdLogin");
+    //
+    // page.elements.frmRegister = $("#frmRegister");
+    // page.elements.usnReg = $("#usnReg");
+    // page.elements.pwdReg = $("#pwdReg");
+    // page.elements.frmRegOpts = $("#frmRegister .role .custom-options");
+
+
+    // page.commands.login = () => {
+    //     let user = {
+    //         username: page.elements.usnLogin.val(),
+    //         password: page.elements.pwdLogin.val()
+    //     }
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         url: page.urls.login,
+    //         data: JSON.stringify(user)
+    //     }).done((resp) => {
+    //         App.Notify.showSuccessAlert("Logged in successfully !");
+    //
+    //         setTimeout(function () {
+    //             window.location.href = "/";
+    //         }, 1000);
+    //
+    //     }).fail(function () {
+    //         App.Notify.showErrorAlert("The email or password is incorrect, please check the information again");
+    //     });
+    // }
+
+    function doRegister(){
+        $("#register").on('click', function () {
+
+            let user = {
+                username: $("#usnReg").val(),
+                password: $("#pwdReg").val(),
+                role: {
+                    id: $(".user-option").val()
+                }
+            }
+            console.log(user);
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: "http://localhost:8080/api/auth/register",
+                data: JSON.stringify(user)
+            }).done((resp) => {
+                console.log("ok")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'User has been register',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+
+            }).fail(function (jqXHR) {
+                // page.elements.frmLogin[0].reset();
+                //
+                // if (jqXHR.responseJSON) {
+                //     if (jqXHR.responseJSON.message) {
+                //         App.Notify.showErrorAlert(jqXHR.responseJSON.message);
+                //     }
+                //     else {
+                //         $.each(jqXHR.responseJSON, function (key, value) {
+                //             App.Notify.showErrorAlert(value);
+                //         });
+                //     }
+                // }
+                // else {
+                //     App.Notify.showErrorAlert("Something went wrong, please try again");
+                // }
+            });
+        });
+    }
+    doRegister();
+
+    // page.commands.register = () => {
+    //     let user = {
+    //         username: page.elements.usnReg.val(),
+    //         password: page.elements.pwdReg.val(),
+    //         role: {
+    //             id: page.elements.frmRegOpts.find(".selected").data("value"),
+    //             code: page.elements.frmRegOpts.find(".selected").text()
+    //         }
+    //     }
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         url: page.urls.register,
+    //         data: JSON.stringify(user)
+    //     }).done((resp) => {
+    //         App.Notify.showSuccessAlert("Successful account registration !");
+    //
+    //         setTimeout(function () {
+    //             page.elements.usnLogin.val(page.elements.usnReg.val());
+    //             page.elements.pwdLogin.val(page.elements.pwdReg.val());
+    //             page.commands.switchLoginForm();
+    //         }, 1000);
+    //
+    //     }).fail(function (jqXHR) {
+    //         page.elements.frmLogin[0].reset();
+    //
+    //         if (jqXHR.responseJSON) {
+    //             if (jqXHR.responseJSON.message) {
+    //                 App.Notify.showErrorAlert(jqXHR.responseJSON.message);
+    //             }
+    //             else {
+    //                 $.each(jqXHR.responseJSON, function (key, value) {
+    //                     App.Notify.showErrorAlert(value);
+    //                 });
+    //             }
+    //         }
+    //         else {
+    //             App.Notify.showErrorAlert("Something went wrong, please try again");
+    //         }
+    //     });
+    // }
+    // page.initializeControlEvent = () => {
+    //
+    //     page.elements.loginBoxBtn.on("click", function () {
+    //         page.commands.switchLoginForm();
+    //     });
+    //
+    //     page.elements.registerBoxBtn.on("click", function () {
+    //         page.commands.switchRegisterForm();
+    //     });
+    //
+    //     page.elements.frmRegOpt.on("click", function () {
+    //         let role_name = $(this).html();
+    //         page.elements.frmRegSelectSpan.html(role_name);
+    //         page.elements.frmRegOpts.find(".selected").removeClass("selected");
+    //         $(this).addClass("selected");
+    //     });
+    //
+    //     page.elements.btnLogin.on("click", function () {
+    //         page.commands.login();
+    //     });
+    //
+    //     page.elements.btnRegister.on("click", function () {
+    //         page.commands.register();
+    //     });
+    //
+    //     page.elements.frmResOptWrapper.on("click", function (event) {
+    //         event.stopPropagation();
+    //         page.elements.frmRegSelect.toggleClass("open");
+    //     });
+    //
+    //     $('input').iCheck({
+    //         checkboxClass: 'icheckbox_square-blue',
+    //         radioClass: 'iradio_square-blue',
+    //         increaseArea: '20%'
+    //     });
+    //
+    //     $(document).on("click", function () {
+    //         page.elements.frmRegSelect.removeClass("open");
+    //     });
+    //
+    //     $(".tooltip .airplane").on("click", function () {
+    //         $(".main").addClass("hide");
+    //         $("section").css("display", "flex");
+    //     });
+    //
+    //     page.commands.planeHandle();
+    //
+    //     page.commands.speedHandle();
+    // }
+    //
+    // $(() => {
+    //     page.initializeControlEvent();
+    // });
+
+
+</script>
+</body>
+
+</html>
